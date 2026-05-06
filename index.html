@@ -1,9 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>北海道グルメラン</title>
+    
+    <!-- ここが「3Dを動かすための魔法の言葉」です -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -19,7 +30,6 @@
           </div>
           <div class="status">
             <div class="lifeRow">
-              <img class="heroIcon" src="./assets/hero.jpg" alt="主人公" />
               <div class="hearts" id="hearts">♥♥♥</div>
             </div>
             <div class="score">
@@ -29,11 +39,7 @@
             <div class="best">BEST <span id="bestScore">0</span></div>
           </div>
         </div>
-
-        <div class="route">
-          <div id="progressFill"></div>
-        </div>
-
+        <div class="route"><div id="progressFill"></div></div>
         <div class="inventory" id="inventory"></div>
       </section>
 
@@ -42,59 +48,39 @@
           <p class="eyebrow">Muroran to Rebun</p>
           <h2>北海道グルメラン</h2>
           <p class="lead">室蘭から礼文島へ。街を走ってご当地グルメを集め、悪い看護師を団子で倒しながら北海道を北上します。</p>
-          <p class="lead small">ハイスコアはこのブラウザのlocalStorageに保存されます。</p>
         </div>
         <button id="startButton" type="button">START</button>
       </section>
 
       <section id="rulesPanel" class="panel hidden">
         <div>
-          <p class="eyebrow">How to play</p>
           <h2>遊び方</h2>
-          <p class="lead">左右でレーン移動、↑でジャンプ、🍡で団子アタック。</p>
-          <p class="lead">食べ物や特産品を取るとポイント獲得、ハートが1つ回復。高価なものほど高得点です。</p>
-          <p class="lead">悪い看護師にぶつかるとハートが減ります。ハートが0になると、その街の最初からやり直しです。</p>
+          <p class="lead">左右で移動、↑でジャンプ、🍡で攻撃。</p>
         </div>
         <button id="rulesButton" type="button">MAPへ</button>
       </section>
 
       <section id="mapPanel" class="panel mapPanel hidden">
-        <div>
-          <p class="eyebrow">Stage map</p>
-          <h2>北海道マップ</h2>
-          <div class="mapBoard" id="mapBoard">
-            <div class="mapDot" data-stage="0">室蘭</div>
-            <div class="mapDot" data-stage="1">富良野</div>
-            <div class="mapDot" data-stage="2">札幌</div>
-            <div class="mapDot" data-stage="3">稚内</div>
-            <div class="mapDot" data-stage="4">礼文島</div>
-            <div class="mapDot bonus" data-stage="5">沖縄</div>
-            <div id="mapHero">🍡</div>
-          </div>
-          <div class="collectionBox">
-            <h3 id="collectionTitle">累計コレクション</h3>
-            <div id="collectionList" class="collectionList"></div>
-          </div>
+        <div class="mapBoard" id="mapBoard">
+          <div class="mapDot" data-stage="0">室蘭</div>
+          <div class="mapDot" data-stage="1">富良野</div>
+          <div class="mapDot" data-stage="2">札幌</div>
+          <div id="mapHero">🍡</div>
         </div>
         <button id="mapButton" type="button">この街へ</button>
       </section>
 
       <section id="countdown" class="countdown hidden">3</section>
-
       <section id="message" class="message hidden">
         <h2 id="messageTitle"></h2>
-        <p id="messageText"></p>
-        <div id="messageCollection" class="collectionList"></div>
         <button id="nextButton" type="button">つづける</button>
       </section>
 
-      <div id="floatLayer" aria-hidden="true"></div>
-
-      <nav id="touchControls" aria-label="game controls">
-        <button id="leftButton" type="button" aria-label="left">‹</button>
-        <button id="attackButton" type="button" aria-label="dango attack">🍡</button>
-        <button id="jumpButton" type="button" aria-label="jump">↑</button>
-        <button id="rightButton" type="button" aria-label="right">›</button>
+      <nav id="touchControls">
+        <button id="leftButton" type="button">‹</button>
+        <button id="attackButton" type="button">🍡</button>
+        <button id="jumpButton" type="button">↑</button>
+        <button id="rightButton" type="button">›</button>
       </nav>
     </main>
 

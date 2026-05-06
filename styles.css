@@ -1,0 +1,48 @@
+  overflow: hidden;
+}
+
+.collectionBox {
+  margin-top: 12px;
+}
+
+.collectionBox h3 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.collectionList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  max-height: 164px;
+  overflow: auto;
+}
+
+.collectionItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.collectionItem.missing {
+  opacity: 0.42;
+  filter: grayscale(1);
+}
+
+.collectionItem small {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 10px;
+}
+
+.mapBoard::before {
+  content: "";
+  position: absolute;

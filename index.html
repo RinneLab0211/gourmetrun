@@ -1,89 +1,48 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>北海道グルメラン</title>
-    
-    <!-- ここが「3Dを動かすための魔法の言葉」です -->
+    <!-- 3Dライブラリを読み込むための必須設定 -->
     <script type="importmap">
-      {
+    {
         "imports": {
-          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
         }
-      }
+    }
     </script>
-
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
     <main id="app">
-      <canvas id="game" aria-label="北海道グルメラン game"></canvas>
-
-      <section id="hud" aria-live="polite">
-        <div class="topbar">
-          <div>
-            <p class="eyebrow">北海道グルメラン</p>
-            <h1 id="stageName">室蘭</h1>
-            <p id="stageGoal">目標 0 / 5000</p>
-          </div>
-          <div class="status">
-            <div class="lifeRow">
-              <div class="hearts" id="hearts">♥♥♥</div>
+        <canvas id="game"></canvas>
+        <section id="hud">
+            <div class="topbar">
+                <div>
+                    <p class="eyebrow">北海道グルメラン</p>
+                    <h1 id="stageName">室蘭</h1>
+                    <p id="stageGoal">目標 0 / 5000</p>
+                </div>
+                <div class="status">
+                    <div class="hearts" id="hearts">♥♥♥</div>
+                    <div class="score"><span id="score">0</span><small>total</small></div>
+                    <div class="best">BEST <span id="bestScore">0</span></div>
+                </div>
             </div>
-            <div class="score">
-              <span id="score">0</span>
-              <small>total</small>
-            </div>
-            <div class="best">BEST <span id="bestScore">0</span></div>
-          </div>
-        </div>
-        <div class="route"><div id="progressFill"></div></div>
-        <div class="inventory" id="inventory"></div>
-      </section>
-
-      <section id="startPanel" class="panel home">
-        <div>
-          <p class="eyebrow">Muroran to Rebun</p>
-          <h2>北海道グルメラン</h2>
-          <p class="lead">室蘭から礼文島へ。街を走ってご当地グルメを集め、悪い看護師を団子で倒しながら北海道を北上します。</p>
-        </div>
-        <button id="startButton" type="button">START</button>
-      </section>
-
-      <section id="rulesPanel" class="panel hidden">
-        <div>
-          <h2>遊び方</h2>
-          <p class="lead">左右で移動、↑でジャンプ、🍡で攻撃。</p>
-        </div>
-        <button id="rulesButton" type="button">MAPへ</button>
-      </section>
-
-      <section id="mapPanel" class="panel mapPanel hidden">
-        <div class="mapBoard" id="mapBoard">
-          <div class="mapDot" data-stage="0">室蘭</div>
-          <div class="mapDot" data-stage="1">富良野</div>
-          <div class="mapDot" data-stage="2">札幌</div>
-          <div id="mapHero">🍡</div>
-        </div>
-        <button id="mapButton" type="button">この街へ</button>
-      </section>
-
-      <section id="countdown" class="countdown hidden">3</section>
-      <section id="message" class="message hidden">
-        <h2 id="messageTitle"></h2>
-        <button id="nextButton" type="button">つづける</button>
-      </section>
-
-      <nav id="touchControls">
-        <button id="leftButton" type="button">‹</button>
-        <button id="attackButton" type="button">🍡</button>
-        <button id="jumpButton" type="button">↑</button>
-        <button id="rightButton" type="button">›</button>
-      </nav>
+            <div class="route"><div id="progressFill"></div></div>
+        </section>
+        <section id="startPanel" class="panel">
+            <h2>北海道グルメラン</h2>
+            <button id="startButton">START</button>
+        </section>
+        <nav id="touchControls">
+            <button id="leftButton">‹</button>
+            <button id="attackButton">🍡</button>
+            <button id="jumpButton">↑</button>
+            <button id="rightButton">›</button>
+        </nav>
     </main>
-
     <script type="module" src="./src/game.js"></script>
-  </body>
+</body>
 </html>
